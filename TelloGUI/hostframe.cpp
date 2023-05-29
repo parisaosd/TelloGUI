@@ -7,16 +7,7 @@
 #include <wx/dynlib.h>
 #include <wx/file.h>
 
-
-enum
-{
-    ID_DOIT = 1
-};
 IMPLEMENT_CLASS(HostFrame, wxFrame)
-
-BEGIN_EVENT_TABLE(HostFrame, wxFrame)
-EVT_BUTTON(ID_DOIT, HostFrame::OnDoit)
-END_EVENT_TABLE()
 
 HostFrame::~HostFrame() {}
 
@@ -29,11 +20,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     _telloControl = std::make_shared<TelloControl>();
 #endif // TEST
 
-    dummy = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(500, 200));
-    box = new wxBoxSizer(wxVERTICAL);
-    wxButton* b = new wxButton(this, ID_DOIT, _("Doit"));
-    box->Add(b, 0, wxEXPAND, 0);
-    box->Add(dummy, 1, wxEXPAND, 5);    
+    pluginsPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);  
 
     int batteryLevel = _telloControl->batteryLevel();
     wxBoxSizer* vbox = new wxBoxSizer(wxVERTICAL);
@@ -110,9 +97,11 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     vbox->Add(hboxToolbar);
     vbox->Add(hboxMain);
 
-    vbox->Add(box);
+    vbox->Add(pluginsPanel);
 
     this->SetSizer(vbox);
+
+    LoadPlugins();
 }
 
 wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip) {
@@ -134,17 +123,21 @@ wxBitmapButton* HostFrame::emptyButton() {
     return button;
 }
 
-void HostFrame::OnDoit(wxCommandEvent& e)
+void HostFrame::LoadPlugins()
 {
-    ExamplePlugin* examplePlugin = new ExamplePlugin();
+    std::vector<IPlugin*> plugins = 
+    {
+        new ExamplePlugin(),
+    };
 
-    //call some method in it
-    examplePlugin->PerformTasks();
-    //we will append the gui from the plugin into the panel's sizer
     wxBoxSizer* s = new wxBoxSizer(wxVERTICAL);
-    wxWindow* w = examplePlugin->GetGUI(this->dummy);
-    s->Add(w, 0, wxALL | wxALIGN_CENTER, 5);
-    dummy->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
-    dummy->SetSizer(s);
-    dummy->Layout();
+
+    for(IPlugin* plugin : plugins)
+    {
+        wxWindow* w = plugin->GetGUI(this->pluginsPanel);
+        s->Add(w, 0, wxALL | wxALIGN_CENTER, 5);
+    }
+    pluginsPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
+    pluginsPanel->SetSizer(s);
+    pluginsPanel->Layout();
 }

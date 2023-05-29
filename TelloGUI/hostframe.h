@@ -19,11 +19,10 @@ public:
     virtual ~HostFrame();
 private:
     DECLARE_CLASS(HostFrame)
-    wxPanel* dummy;
+    wxPanel* pluginsPanel;
     wxBitmapButton* arrowButton(wxString pic, wxString toolTip);
     wxBitmapButton* emptyButton();
-    void OnDoit(wxCommandEvent& e);
-    DECLARE_EVENT_TABLE()
+    void LoadPlugins();
 #ifdef TEST
     std::shared_ptr<ITelloControl> _telloControl;
 #else
