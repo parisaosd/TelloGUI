@@ -7,6 +7,7 @@
 #include <wx/file.h>
 
 #include "exampledateplugin.h"
+#include "plannedflight.h"
 
 IMPLEMENT_CLASS(HostFrame, wxFrame)
 
@@ -129,7 +130,8 @@ void HostFrame::LoadPlugins()
     std::vector<IPlugin*> plugins = 
     {
         new ExamplePlugin(),
-        new ExampleDatePlugin()
+        new ExampleDatePlugin(),
+        new PlannedFlight()
     };
 
     wxBoxSizer* s = new wxBoxSizer(wxHORIZONTAL);
