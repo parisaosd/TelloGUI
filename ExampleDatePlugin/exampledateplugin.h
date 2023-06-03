@@ -3,10 +3,10 @@
 #include "iplugin.hpp"
 
 //this will be our actual plugin.
-class ExamplePlugin : public IPlugin
+class ExampleDatePlugin : public IPlugin
 {
 public:
-	ExamplePlugin();
+	ExampleDatePlugin();
 	virtual wxWindow* GetGUI(wxWindow* parent);
 
 	void OnButton(wxCommandEvent& e);

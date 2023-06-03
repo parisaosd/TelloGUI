@@ -1,11 +1,14 @@
 #include "pch.h"
-#include "exampleplugin.h"
+#include "exampledateplugin.h"
+#include <wx/datetime.h>
 
-ExamplePlugin::ExamplePlugin()
+
+
+ExampleDatePlugin::ExampleDatePlugin()
 {
 }
 
-wxWindow* ExamplePlugin::GetGUI(wxWindow* parent)
+wxWindow* ExampleDatePlugin::GetGUI(wxWindow* parent)
 {
 	wxWindow* dlg = new wxWindow(parent, wxID_ANY);
 
@@ -15,7 +18,7 @@ wxWindow* ExamplePlugin::GetGUI(wxWindow* parent)
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
 	b->Connect(wxID_ANY,
 		wxEVT_COMMAND_BUTTON_CLICKED,
-		wxCommandEventHandler(ExamplePlugin::OnButton), NULL, this
+		wxCommandEventHandler(ExampleDatePlugin::OnButton), NULL, this
 	);
 
 	box->Add(b, 0, wxALIGN_CENTER | wxALL, 5);
@@ -24,7 +27,8 @@ wxWindow* ExamplePlugin::GetGUI(wxWindow* parent)
 	return dlg;
 }
 
-void ExamplePlugin::OnButton(wxCommandEvent& e)
+void ExampleDatePlugin::OnButton(wxCommandEvent& e)
 {
-	wxMessageBox(_("Doing some action"));
+	//wxMessageBox(_("Doing some action"));
+	wxMessageBox(wxDateTime().Now().Format());
 }

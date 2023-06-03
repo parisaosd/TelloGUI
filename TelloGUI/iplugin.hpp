@@ -6,7 +6,6 @@
 class IPlugin : public wxEvtHandler
 {
 public:
-	virtual void PerformTasks() = 0;
 	virtual wxWindow* GetGUI(wxWindow* parent) = 0;
 };
 

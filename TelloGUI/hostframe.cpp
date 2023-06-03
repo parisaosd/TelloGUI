@@ -3,9 +3,10 @@
 
 #include "iplugin.hpp"
 #include "../ExamplePlugin/exampleplugin.h"
-
 #include <wx/dynlib.h>
 #include <wx/file.h>
+
+#include "exampledateplugin.h"
 
 IMPLEMENT_CLASS(HostFrame, wxFrame)
 
@@ -128,9 +129,10 @@ void HostFrame::LoadPlugins()
     std::vector<IPlugin*> plugins = 
     {
         new ExamplePlugin(),
+        new ExampleDatePlugin()
     };
 
-    wxBoxSizer* s = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* s = new wxBoxSizer(wxHORIZONTAL);
 
     for(IPlugin* plugin : plugins)
     {
