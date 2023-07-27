@@ -2,8 +2,9 @@
 
 char* TelloControlMock::genericCommand(const char* message)
 {
-	std::cout << "generic command..." << std::endl;
-	return nullptr;
+	std::cout << "generic command..." << message << std::endl;
+	char result[] = { 'o', 'k', '\0' };
+	return result;
 }
 
 int TelloControlMock::batteryLevel()

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "plannedflight.h"
 
+#include "flightplan.hpp"
+
 #include <wx/dialog.h>
 #include <wx/textfile.h>
 
@@ -41,18 +43,18 @@ void PlannedFlight::OnButton(wxCommandEvent& e)
 
 	// proceed loading the file chosen by the user;
 	// this can be done with e.g. wxWidgets input streams:
-	wxTextFile tfile;
-	tfile.Open(openFileDialog->GetPath());
+	//wxTextFile tfile;
+	//tfile.Open(openFileDialog->GetPath());
 
+	FlightPlan flightPlan(openFileDialog->GetPath(), _telloControl);
 
 	std::stringbuf sbuf(std::ios::out); // create a stringbuf
 	auto oldbuf = std::cout.rdbuf(std::addressof(sbuf)); // associate the stringbuf with std::cout
 
-	_telloControl->takeoff();
+	flightPlan.execute();
 
 	std::cout.rdbuf(oldbuf); // restore cout's original buffer
 	std::string output = sbuf.str(); // get a copy of the underlying string
 	//wxMessageBox(tfile.GetFirstLine());
-	wxMessageBox(output);
-	
+	wxMessageBox(output);	
 }

@@ -139,8 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="flightplan.hpp" />
-    <ClInclude Include="flightPlanValidator.hpp" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="itellocontrol.hpp" />
     <ClInclude Include="pch.h" />
@@ -149,8 +147,6 @@
     <ClInclude Include="udpclient.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="flightplan.cpp" />
-    <ClCompile Include="flightPlanValidator.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

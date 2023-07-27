@@ -8,12 +8,13 @@
 #ifndef flightplan_hpp
 #define flightplan_hpp
 
-#include "tellocontrol.hpp"
+#include "../Tello/itellocontrol.hpp"
 #include "flightPlanValidator.hpp"
 
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -21,14 +22,14 @@ using namespace std;
 class FlightPlan
 {
 public:
-    FlightPlan(const char* filePath,TelloControl &telloControl);
+    FlightPlan(const char* filePath, std::shared_ptr<ITelloControl> telloControl);
     ~FlightPlan();
     bool execute();
     
 private:
     string* filePath;
     vector<std::string> parse();
-    TelloControl& telloControl;///???? is it the address of telloControl object????
+    std::shared_ptr<ITelloControl> telloControl;
     std::shared_ptr<FlightPlanValidator> flightPlanValidator;
 };
 

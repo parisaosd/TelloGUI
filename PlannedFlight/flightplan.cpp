@@ -6,7 +6,7 @@
 //
 #include "pch.h"
 #include "flightplan.hpp"
-//#include "flightPlanValidator.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -16,7 +16,7 @@
 using namespace std;
 
 ///what is the right side ????
-FlightPlan::FlightPlan(const char* filePath,TelloControl &telloControl) : telloControl(telloControl)
+FlightPlan::FlightPlan(const char* filePath, std::shared_ptr<ITelloControl> telloControl) : telloControl(telloControl)
 {
     FlightPlan::filePath = new string(filePath);
     flightPlanValidator = std::make_shared<FlightPlanValidator>();
@@ -49,7 +49,7 @@ bool FlightPlan::execute()
     {
         if(flightPlanValidator->isValid(command))
         {
-            auto result = telloControl.genericCommand(command.data());
+            auto result = telloControl->genericCommand(command.data());
             if (strcmp(result, "ok") != 0)
             {
                 return false;

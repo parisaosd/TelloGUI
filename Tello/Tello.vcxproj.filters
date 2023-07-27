@@ -21,12 +21,6 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="flightplan.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="flightPlanValidator.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="state.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -46,12 +40,6 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="flightplan.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="flightPlanValidator.cpp">
-      <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="state.cpp">
       <Filter>Resource Files</Filter>

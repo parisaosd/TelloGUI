@@ -8,7 +8,6 @@
 #include "tellocontrol.hpp"
 
 #include "udpclient.hpp"
-#include "flightplan.hpp"
 
 #include <stdio.h>
 #include <string.h>
@@ -166,13 +165,6 @@ bool TelloControl::goXYZSpeed(int x, int y, int z, int speed)
 bool TelloControl::stop()
 {
     return boolResult(udpClient->send(_strdup("stop")));
-}
-
-/// why do we have this function in this class??
-bool TelloControl::executeFlightPlan(const char* filePath)
-{
-    FlightPlan flightPlan(filePath, *this);
-    return flightPlan.execute();
 }
 
 bool TelloControl::boolResult(char* const input)
