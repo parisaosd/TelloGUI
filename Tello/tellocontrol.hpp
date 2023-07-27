@@ -9,7 +9,7 @@
 #define tellocontrol_hpp
 
 #include "udpclient.hpp"
-
+#include "itellocontrol.hpp"
 #include "state.hpp"
 
 #include <stdio.h>
@@ -18,38 +18,38 @@
 
 using namespace std;
 
-class TelloControl
+class TelloControl : public ITelloControl
 {
 public:
     TelloControl();
-    char* genericCommand(const char* message);
+    char* genericCommand(const char* message) override;
     
     ///Status-->Read
-    int batteryLevel();
-    int speed();
-    int time();
-    int wifi();
+    int batteryLevel() override;
+    int speed() override;
+    int time() override;
+    int wifi() override;
     
     
     ///new Control ------->>>>> check the space between letters in commands ? 
-    bool takeoff();
-    bool land();
-    bool streamon();
-    bool streamoff();
-    bool emergency();
+    bool takeoff() override;
+    bool land() override;
+    bool streamon() override;
+    bool streamoff() override;
+    bool emergency() override;
     
-    bool up(int x);
-    bool down(int x);
-    bool left(int x);
-    bool right(int x);
-    bool forward(int x);
-    bool back(int x);
-    bool cwx(int x);
-    bool ccw(int x);
-    bool flip(string x);/// X---> l,r,f,b
-    bool goXYZSpeed(int x, int y, int z, int speed);
+    bool up(int x) override;
+    bool down(int x) override;
+    bool left(int x) override;
+    bool right(int x) override;
+    bool forward(int x) override;
+    bool back(int x) override;
+    bool cwx(int x) override;
+    bool ccw(int x) override;
+    bool flip(string x) override;/// X---> l,r,f,b
+    bool goXYZSpeed(int x, int y, int z, int speed) override;
     
-    bool stop();
+    bool stop() override;
     
     bool executeFlightPlan(const char* filePath);
     

@@ -29,9 +29,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="itellocontrol.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Test\tellocontrolmock.hpp">
       <Filter>Test</Filter>
     </ClInclude>

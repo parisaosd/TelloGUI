@@ -2,10 +2,14 @@
 #include "hostframe.h"
 
 #include "iplugin.hpp"
+#ifdef TEST
+#include "../Test/tellocontrolmock.hpp"
+#else
+#include "../Tello/tellocontrol.hpp"
+#endif // TEST
 #include "../ExamplePlugin/exampleplugin.h"
 #include <wx/dynlib.h>
 #include <wx/file.h>
-
 #include "exampledateplugin.h"
 #include "plannedflight.h"
 
@@ -131,7 +135,8 @@ void HostFrame::LoadPlugins()
     {
         new ExamplePlugin(),
         new ExampleDatePlugin(),
-        new PlannedFlight()
+        //Add itellocontrol  
+        new PlannedFlight(_telloControl)
     };
 
     wxBoxSizer* s = new wxBoxSizer(wxHORIZONTAL);

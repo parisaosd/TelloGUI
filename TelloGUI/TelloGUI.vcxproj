@@ -88,12 +88,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Include;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Tello;C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Lib;C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Ws2_32.lib;Tello.lib;ExamplePlugin.lib;ExampleDatePlugin.lib;PlannedFlight.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -105,14 +105,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Include;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Tello;C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Lib;C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Ws2_32.lib;Tello.lib;ExamplePlugin.lib;ExampleDatePlugin.lib;PlannedFlight.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -122,12 +122,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Include;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Tello;C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Lib;C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Ws2_32.lib;Tello.lib;ExamplePlugin.lib;ExampleDatePlugin.lib;PlannedFlight.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -139,14 +139,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Include;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Tello;C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI\Lib;C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Ws2_32.lib;Tello.lib;ExamplePlugin.lib;ExampleDatePlugin.lib;PlannedFlight.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -159,7 +159,6 @@
     <ClInclude Include="..\Test\tellocontrolmock.hpp" />
     <ClInclude Include="hostframe.h" />
     <ClInclude Include="iplugin.hpp" />
-    <ClInclude Include="itellocontrol.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="arrow-left.png" />
@@ -173,6 +172,9 @@
     </ProjectReference>
     <ProjectReference Include="..\PlannedFlight\PlannedFlight.vcxproj">
       <Project>{3be79afa-585e-4bb4-8444-5f3c976dfe2a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Tello\Tello.vcxproj">
+      <Project>{66a11da7-fdb4-4088-8427-4f04b792f1df}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

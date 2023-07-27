@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;C:\Users\paris\source\repos\Tello\TelloGUI\Tello;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -96,7 +96,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;C:\Users\paris\source\repos\Tello\TelloGUI\Tello;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -114,7 +114,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;C:\Users\paris\source\repos\Tello\TelloGUI\Tello;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -132,7 +132,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\wxWidgets\include;C:\wxWidgets\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\TelloGUI;C:\Users\paris\source\repos\Tello\TelloGUI\Tello;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
