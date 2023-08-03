@@ -15,6 +15,9 @@ private:
     wxBitmapButton* emptyButton();
     void LoadPlugins();
     void OnButtonUpClick(wxCommandEvent& e);
+    void OnButtonDownClick(wxCommandEvent& e);
+    void OnButtonLeftClick(wxCommandEvent& e);
+    void OnButtonRightClick(wxCommandEvent& e);
 
     std::shared_ptr<ITelloControl> _telloControl;
 };

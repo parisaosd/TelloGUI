@@ -76,9 +76,9 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     //row 2
 
 
-    gs->Add(arrowButton("arrow-left.png", "Move left"));
+    gs->Add(arrowButton("arrow-left.png", "Move left", wxCommandEventHandler(HostFrame::OnButtonLeftClick)));
     gs->Add(emptyButton());
-    gs->Add(arrowButton("arrow-right.png", "Move right"));
+    gs->Add(arrowButton("arrow-right.png", "Move right", wxCommandEventHandler(HostFrame::OnButtonRightClick)));
     gs->Add(emptyButton());
     gs->Add(emptyButton());
     gs->Add(emptyButton());
@@ -90,7 +90,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
     //row 3
     gs->Add(emptyButton());
-    gs->Add(arrowButton("arrow-down.png", "Move down"));
+    gs->Add(arrowButton("arrow-down.png", "Move down", wxCommandEventHandler(HostFrame::OnButtonDownClick)));
     gs->Add(emptyButton());
     gs->Add(emptyButton());
     gs->Add(emptyButton());
@@ -116,6 +116,24 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 void HostFrame::OnButtonUpClick(wxCommandEvent& e)
 {
     _telloControl->takeoff();
+}
+
+void HostFrame::OnButtonDownClick(wxCommandEvent& e)
+{
+    _telloControl->land();
+}
+
+void HostFrame::OnButtonLeftClick(wxCommandEvent& e)
+{
+    if (!_telloControl->left(10))
+    {
+        cout << "error moving left" << endl;
+    }
+}
+
+void HostFrame::OnButtonRightClick(wxCommandEvent& e)
+{
+    _telloControl->right(10);
 }
 
 wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip, wxObjectEventFunction function) {
