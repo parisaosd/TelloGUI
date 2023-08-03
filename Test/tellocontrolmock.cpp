@@ -7,6 +7,14 @@ char* TelloControlMock::genericCommand(const char* message)
 	return result;
 }
 
+char* TelloControlMock::getStreamData()
+{
+	streamon();
+	std::cout << "get Stream Data..." << std::endl;
+	char result[] = { 'o', 'k', '\0' };
+	return result;
+}
+
 int TelloControlMock::batteryLevel()
 {
 	return 50;

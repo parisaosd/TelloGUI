@@ -9,6 +9,7 @@
 #define tellocontrol_hpp
 
 #include "udpclient.hpp"
+#include "udpserver.hpp"
 #include "itellocontrol.hpp"
 #include "state.hpp"
 
@@ -23,6 +24,8 @@ class TelloControl : public ITelloControl
 public:
     TelloControl();
     char* genericCommand(const char* message) override;
+
+    char* getStreamData() override;
     
     ///Status-->Read
     int batteryLevel() override;
@@ -49,14 +52,12 @@ public:
     bool flip(string x) override;/// X---> l,r,f,b
     bool goXYZSpeed(int x, int y, int z, int speed) override;
     
-    bool stop() override;
-    
-    bool executeFlightPlan(const char* filePath);
-    
+    bool stop() override;   
     
 private:
     std::shared_ptr<State> state;
     std::shared_ptr<UdpClient> udpClient;
+    std::shared_ptr<UdpServer> udpServer;
     bool boolResult(char* const input);
 
 };

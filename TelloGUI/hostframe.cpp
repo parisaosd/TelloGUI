@@ -1,4 +1,4 @@
-#define TEST
+//#define TEST
 #include "hostframe.h"
 
 #include "iplugin.hpp"
@@ -7,11 +7,14 @@
 #else
 #include "../Tello/tellocontrol.hpp"
 #endif // TEST
-#include "../ExamplePlugin/exampleplugin.h"
+#include "../PhotoVideo/photovideo.h"
 #include <wx/dynlib.h>
 #include <wx/file.h>
 #include "exampledateplugin.h"
 #include "plannedflight.h"
+
+#include <opencv2/opencv.hpp>
+#include <iostream>
 
 IMPLEMENT_CLASS(HostFrame, wxFrame)
 
@@ -60,7 +63,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
     // row 1 
     gs->Add(emptyButton());
-    gs->Add(arrowButton("arrow-up.png", "Move up"));
+    gs->Add(arrowButton("arrow-up.png", "Move up", wxCommandEventHandler(HostFrame::OnButtonUpClick)));
     gs->Add(emptyButton());
     gs->Add(emptyButton());
     gs->Add(emptyButton());
@@ -110,7 +113,12 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     LoadPlugins();
 }
 
-wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip) {
+void HostFrame::OnButtonUpClick(wxCommandEvent& e)
+{
+    _telloControl->takeoff();
+}
+
+wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip, wxObjectEventFunction function) {
     wxBitmap bitmap;
     bitmap.LoadFile(pic, wxBITMAP_TYPE_PNG);
     wxBitmapButton* button = new wxBitmapButton(this, -1, bitmap, wxPoint(0, 0), wxSize(35, 35), 0);
@@ -118,6 +126,12 @@ wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip) {
     // how to change the background color of the arrows??????????????????????????????????--> the other approach did not work 
 
     button->SetToolTip(toolTip);
+    if (function != nullptr) {
+        button->Connect(wxID_ANY,
+            wxEVT_COMMAND_BUTTON_CLICKED,
+            function, NULL, this
+        );
+    }
     return button;
 }
 
@@ -133,7 +147,7 @@ void HostFrame::LoadPlugins()
 {
     std::vector<IPlugin*> plugins = 
     {
-        new ExamplePlugin(),
+        new PhotoVideo(_telloControl),
         new ExampleDatePlugin(),
         //Add itellocontrol  
         new PlannedFlight(_telloControl)

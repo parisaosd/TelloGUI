@@ -5,13 +5,17 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TelloGUI", "TelloGUI\TelloGUI.vcxproj", "{927E93F0-C464-42BF-9C34-BFF6FEA7F073}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExamplePlugin", "ExamplePlugin\ExamplePlugin.vcxproj", "{6DAD5192-E334-4703-9DF5-E3D87A5C63FF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhotoVideo", "PhotoVideo\PhotoVideo.vcxproj", "{6DAD5192-E334-4703-9DF5-E3D87A5C63FF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleDatePlugin", "ExampleDatePlugin\ExampleDatePlugin.vcxproj", "{8280AC26-6708-474E-B1D8-86A374BE1555}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlannedFlight", "PlannedFlight\PlannedFlight.vcxproj", "{3BE79AFA-585E-4BB4-8444-5F3C976DFE2A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tello", "Tello\Tello.vcxproj", "{66A11DA7-FDB4-4088-8427-4F04B792F1DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{41249048-411C-4BE7-82E5-CA6B2548EB2C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UpdTest", "UpdTest\UpdTest.vcxproj", "{267308D9-3A57-40F1-B409-55FB5BD0D94C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,9 +65,22 @@ Global
 		{66A11DA7-FDB4-4088-8427-4F04B792F1DF}.Release|x64.Build.0 = Release|x64
 		{66A11DA7-FDB4-4088-8427-4F04B792F1DF}.Release|x86.ActiveCfg = Release|Win32
 		{66A11DA7-FDB4-4088-8427-4F04B792F1DF}.Release|x86.Build.0 = Release|Win32
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x64.ActiveCfg = Release|x64
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x64.Build.0 = Release|x64
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x86.ActiveCfg = Debug|Win32
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x86.Build.0 = Debug|Win32
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x64.ActiveCfg = Release|x64
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x64.Build.0 = Release|x64
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x86.ActiveCfg = Release|Win32
+		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6DAD5192-E334-4703-9DF5-E3D87A5C63FF} = {41249048-411C-4BE7-82E5-CA6B2548EB2C}
+		{8280AC26-6708-474E-B1D8-86A374BE1555} = {41249048-411C-4BE7-82E5-CA6B2548EB2C}
+		{3BE79AFA-585E-4BB4-8444-5F3C976DFE2A} = {41249048-411C-4BE7-82E5-CA6B2548EB2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EA54421-FD0F-4724-A7C1-80B5FACE6B15}

@@ -10,6 +10,8 @@ class TelloControlMock : public ITelloControl
 public:
     char* genericCommand(const char* message) override;
 
+    char* getStreamData() override;
+
     ///Status-->Read
     int batteryLevel() override;
     int speed() override;

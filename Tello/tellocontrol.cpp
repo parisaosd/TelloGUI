@@ -19,7 +19,8 @@ using namespace std;
 TelloControl::TelloControl()
 {
     ///udpClient = new UdpClient(strdup("192.168.10.1"),8889);
-    udpClient= std::make_shared<UdpClient>(_strdup("192.168.10.1"),8889);
+    udpClient = std::make_shared<UdpClient>(_strdup("192.168.10.1"), 8889);
+    udpServer= std::make_shared<UdpServer>(_strdup("0.0.0.0"), 11111);
     int attempts=5;
     while(attempts>0){
         if(boolResult(udpClient->send(_strdup("command")))){
@@ -41,6 +42,12 @@ TelloControl::TelloControl()
 char* TelloControl::genericCommand(const char* message)
 {
     return udpClient->send(message);
+}
+
+char* TelloControl::getStreamData()
+{
+    streamon();
+    return udpServer->getMessage();
 }
 
 /// Status --> Read
@@ -95,6 +102,11 @@ bool TelloControl::streamoff()
     return boolResult(udpClient->send(_strdup("streamoff")));
 }
 
+bool TelloControl::emergency()
+{
+    return false;
+}
+
 bool TelloControl::streamon()
 {
     return boolResult(udpClient->send(_strdup("streamon")));
@@ -140,6 +152,11 @@ bool TelloControl::cwx(int x)
 {
     auto command = std::string("cwx ") + std::to_string(x);
     return boolResult(udpClient->send(command.data()));
+}
+
+bool TelloControl::ccw(int x)
+{
+    return false;
 }
 
 bool TelloControl::flip(string x)

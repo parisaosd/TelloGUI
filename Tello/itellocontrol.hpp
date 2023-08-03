@@ -7,6 +7,8 @@ class ITelloControl
 public:
     virtual char* genericCommand(const char* message) = 0;
 
+    virtual char* getStreamData() = 0;
+
 	virtual int batteryLevel() = 0;
 	virtual int speed() = 0;
     virtual int time() = 0;
