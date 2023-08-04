@@ -10,7 +10,9 @@ class TelloControlMock : public ITelloControl
 public:
     char* genericCommand(const char* message) override;
 
-    char* getStreamData() override;
+    cv::Mat getVideoFrame() override;
+    bool isStreamOn() override;
+    bool saveScreenshotJpeg(std::string filename) override;
 
     ///Status-->Read
     int batteryLevel() override;

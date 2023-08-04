@@ -7,12 +7,20 @@ char* TelloControlMock::genericCommand(const char* message)
 	return result;
 }
 
-char* TelloControlMock::getStreamData()
+cv::Mat TelloControlMock::getVideoFrame()
 {
 	streamon();
 	std::cout << "get Stream Data..." << std::endl;
-	char result[] = { 'o', 'k', '\0' };
-	return result;
+}
+
+bool TelloControlMock::isStreamOn()
+{
+	return false;
+}
+
+bool TelloControlMock::saveScreenshotJpeg(std::string filename)
+{
+	return false;
 }
 
 int TelloControlMock::batteryLevel()

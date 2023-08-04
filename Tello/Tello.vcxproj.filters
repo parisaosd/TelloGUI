@@ -33,9 +33,6 @@
     <ClInclude Include="itellocontrol.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="udpserver.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tello.cpp">
@@ -51,9 +48,6 @@
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="udpclient.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="udpserver.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>

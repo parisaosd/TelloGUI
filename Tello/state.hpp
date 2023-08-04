@@ -16,9 +16,12 @@ public:
     State();
     void setLanded(bool x);
     bool getLanded();
+    void setStreamStatus(bool x);
+    bool getStreamStatus();
     
 private:
     bool isLanded = true;
+    bool isStreamOn = false;
 
 };
 #endif /* state_hpp */

@@ -1,13 +1,16 @@
 #pragma once
 
 #include <string>
+#include <opencv2/opencv.hpp>
 
 class ITelloControl
 {
 public:
     virtual char* genericCommand(const char* message) = 0;
 
-    virtual char* getStreamData() = 0;
+    virtual cv::Mat getVideoFrame() = 0;
+    virtual bool isStreamOn() = 0;
+    virtual bool saveScreenshotJpeg(std::string filename) = 0;
 
     virtual bool isLanded() = 0;
 

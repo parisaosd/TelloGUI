@@ -18,9 +18,7 @@ using namespace std;
 
 TelloControl::TelloControl()
 {
-    ///udpClient = new UdpClient(strdup("192.168.10.1"),8889);
     udpClient = std::make_shared<UdpClient>(_strdup("192.168.10.1"), 8889);
-    udpServer= std::make_shared<UdpServer>(_strdup("0.0.0.0"), 11111);
     int attempts=5;
     while(attempts>0){
         if(boolResult(udpClient->send(_strdup("command")))){
@@ -34,20 +32,36 @@ TelloControl::TelloControl()
     state = std::make_shared<State>();
 }
 
-/*TelloControl::~TelloControl()
-{
-    delete udpClient;
-}*/
-
 char* TelloControl::genericCommand(const char* message)
 {
     return udpClient->send(message);
 }
 
-char* TelloControl::getStreamData()
+cv::Mat TelloControl::getVideoFrame()
 {
-    streamon();
-    return udpServer->getMessage();
+    if (_videoCapture == nullptr) {
+        _videoCapture = std::make_shared<cv::VideoCapture>("udp://@0.0.0.0:11111");
+        _videoCapture->set(cv::CAP_PROP_BUFFERSIZE, 0);
+    }
+    cv::Mat frame;
+    _videoCapture->read(frame);
+    _latestFrame = frame;
+    return frame;
+}
+
+bool TelloControl::isStreamOn()
+{
+    return state->getStreamStatus();
+}
+
+bool TelloControl::saveScreenshotJpeg(std::string filename)
+{
+    if (!isStreamOn() || _videoCapture == nullptr || !_videoCapture->isOpened())
+    {
+        return false;
+    }
+    cv::imwrite(filename + ".jpg", _latestFrame);
+    return true;
 }
 
 /// Status --> Read
@@ -104,7 +118,9 @@ bool TelloControl::land()
 
 bool TelloControl::streamoff()
 {
-    return boolResult(udpClient->send(_strdup("streamoff")));
+    bool result = boolResult(udpClient->send(_strdup("streamoff")));
+    state->setStreamStatus(result);
+    return result;
 }
 
 bool TelloControl::emergency()
@@ -114,7 +130,9 @@ bool TelloControl::emergency()
 
 bool TelloControl::streamon()
 {
-    return boolResult(udpClient->send(_strdup("streamon")));
+    bool result = boolResult(udpClient->send(_strdup("streamon")));
+    state->setStreamStatus(result);
+    return result;
 }
 
 bool TelloControl::up(int x)

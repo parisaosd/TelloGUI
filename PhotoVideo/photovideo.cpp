@@ -41,37 +41,28 @@ wxWindow* PhotoVideo::GetGUI(wxWindow* parent)
 
 void PhotoVideo::OnStreamButton(wxCommandEvent& e)
 {
-    _telloControl->streamon();
-
-	_videoCapture = new cv::VideoCapture("udp://@0.0.0.0:11111");
-	_videoCapture->set(cv::CAP_PROP_BUFFERSIZE, 0);
-
-	const cv::String windowName("Tello stream");
-	cv::namedWindow(windowName);
-
+	_telloControl->streamon();
 	static const int INTERVAL = 1;
 	auto timer = new wxTimer(this, 5);
 	timer->Start(INTERVAL);
-
 	Connect(5, wxEVT_TIMER, wxTimerEventHandler(PhotoVideo::ShowStreamFrame));
 }
 
 void PhotoVideo::OnScreenshotButton(wxCommandEvent& e)
 {
-	if (_videoCapture == nullptr || !_videoCapture->isOpened())
+	if (_telloControl->saveScreenshotJpeg(std::to_string(std::time(0))))
 	{
-		return;
+		wxMessageBox(wxT("Screenshot saved!"));
 	}
-	cv::imwrite(std::to_string(std::time(0)) + ".jpg", _latestFrame);
-	wxMessageBox(wxT("Screenshot saved!"));
+	else
+	{
+		wxMessageBox(wxT("Could not save a screenshot. CHeck if stream is running."));
+	}
 }
 
-void PhotoVideo::ShowStreamFrame(wxTimerEvent &event)
+void PhotoVideo::ShowStreamFrame(wxTimerEvent& e)
 {
 	const cv::String windowName("Tello stream");
 	cv::namedWindow(windowName);
-	cv::Mat frame;
-	_videoCapture->read(frame);
-	_latestFrame = frame;
-	imshow(windowName, frame);
+	imshow(windowName, _telloControl->getVideoFrame());
 }

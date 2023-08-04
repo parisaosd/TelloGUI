@@ -9,7 +9,6 @@
 #define tellocontrol_hpp
 
 #include "udpclient.hpp"
-#include "udpserver.hpp"
 #include "itellocontrol.hpp"
 #include "state.hpp"
 
@@ -25,7 +24,9 @@ public:
     TelloControl();
     char* genericCommand(const char* message) override;
 
-    char* getStreamData() override;
+    cv::Mat getVideoFrame() override;
+    bool isStreamOn() override;
+    bool saveScreenshotJpeg(std::string filename) override;
     
     ///Status-->Read
     int batteryLevel() override;
@@ -58,7 +59,9 @@ public:
 private:
     std::shared_ptr<State> state;
     std::shared_ptr<UdpClient> udpClient;
-    std::shared_ptr<UdpServer> udpServer;
+    std::shared_ptr<cv::VideoCapture> _videoCapture;
+    cv::Mat _latestFrame;
+
     bool boolResult(char* const input);
 
 };

@@ -16,3 +16,13 @@ void State::setLanded(bool x){
 bool State::getLanded(){
     return isLanded;
 }
+
+void State::setStreamStatus(bool x)
+{
+    isStreamOn = x;
+}
+
+bool State::getStreamStatus()
+{
+    return isStreamOn;
+}
