@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <cctype>
+#include <ctime>
 #include <thread>
 
 PhotoVideo::PhotoVideo(std::shared_ptr<ITelloControl> telloControl)
@@ -18,21 +19,27 @@ wxWindow* PhotoVideo::GetGUI(wxWindow* parent)
 	wxWindow* dlg = new wxWindow(parent, wxID_ANY);
 
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
-	wxButton* b = new wxButton(dlg, wxID_ANY, _("Photo/Video"));
+	wxButton* bStream = new wxButton(dlg, wxID_ANY, _("Camera"));
+	wxButton* bScreenshot = new wxButton(dlg, wxID_ANY, _("Screenshot"));
 	//Use connect in this case as static event tables won't work
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
-	b->Connect(wxID_ANY,
+	bStream->Connect(wxID_ANY,
 		wxEVT_COMMAND_BUTTON_CLICKED,
-		wxCommandEventHandler(PhotoVideo::OnButton), NULL, this
+		wxCommandEventHandler(PhotoVideo::OnStreamButton), NULL, this
+	);
+	bScreenshot->Connect(wxID_ANY,
+		wxEVT_COMMAND_BUTTON_CLICKED,
+		wxCommandEventHandler(PhotoVideo::OnScreenshotButton), NULL, this
 	);
 
-	box->Add(b, 0, wxALIGN_CENTER | wxALL, 5);
+	box->Add(bStream, 0, wxALIGN_CENTER | wxALL, 5);
+	box->Add(bScreenshot, 0, wxALIGN_CENTER | wxALL, 5);
 	dlg->SetSizer(box);
 	dlg->Layout();
 	return dlg;
 }
 
-void PhotoVideo::OnButton(wxCommandEvent& e)
+void PhotoVideo::OnStreamButton(wxCommandEvent& e)
 {
     _telloControl->streamon();
 
@@ -49,11 +56,22 @@ void PhotoVideo::OnButton(wxCommandEvent& e)
 	Connect(5, wxEVT_TIMER, wxTimerEventHandler(PhotoVideo::ShowStreamFrame));
 }
 
+void PhotoVideo::OnScreenshotButton(wxCommandEvent& e)
+{
+	if (_videoCapture == nullptr || !_videoCapture->isOpened())
+	{
+		return;
+	}
+	cv::imwrite(std::to_string(std::time(0)) + ".jpg", _latestFrame);
+	wxMessageBox(wxT("Screenshot saved!"));
+}
+
 void PhotoVideo::ShowStreamFrame(wxTimerEvent &event)
 {
 	const cv::String windowName("Tello stream");
 	cv::namedWindow(windowName);
 	cv::Mat frame;
 	_videoCapture->read(frame);
+	_latestFrame = frame;
 	imshow(windowName, frame);
 }

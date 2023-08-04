@@ -13,11 +13,13 @@ public:
 	PhotoVideo(std::shared_ptr<ITelloControl> telloControl);
 	virtual wxWindow* GetGUI(wxWindow* parent);
 
-	void OnButton(wxCommandEvent& e);
 private:
 	std::shared_ptr<ITelloControl> _telloControl;
 	wxWindow* _parent;
 	cv::VideoCapture* _videoCapture;
+	cv::Mat _latestFrame;
 
 	void ShowStreamFrame(wxTimerEvent& event);
+	void OnStreamButton(wxCommandEvent& e);
+	void OnScreenshotButton(wxCommandEvent& e);
 };
