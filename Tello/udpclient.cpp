@@ -6,14 +6,18 @@
 //
 #include "pch.h"
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include "udpclient.hpp"
 
 #include <iostream>
 #include <cstring>
+#include <cstdio>
 #include <sys/types.h>
 #include <thread>
 
 UdpClient::UdpClient(const char* address,int port) {
+    //Redirect logging from console to a file
+    freopen("UdpClientLog.txt", "w", stdout);
     // Create a socket
     WSADATA wsa;
     if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)

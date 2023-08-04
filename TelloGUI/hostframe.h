@@ -18,6 +18,10 @@ private:
     void OnButtonDownClick(wxCommandEvent& e);
     void OnButtonLeftClick(wxCommandEvent& e);
     void OnButtonRightClick(wxCommandEvent& e);
+    void OnButtonTurnRightClick(wxCommandEvent& e);
+    void OnButtonTurnLeftClick(wxCommandEvent& e);
+    void OnButtonForwardClick(wxCommandEvent& e);
+    void OnButtonBackClick(wxCommandEvent& e);
 
     std::shared_ptr<ITelloControl> _telloControl;
 };

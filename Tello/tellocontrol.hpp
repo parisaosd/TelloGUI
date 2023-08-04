@@ -32,6 +32,7 @@ public:
     int speed() override;
     int time() override;
     int wifi() override;
+    bool isLanded() override;
     
     
     ///new Control ------->>>>> check the space between letters in commands ? 
@@ -47,7 +48,7 @@ public:
     bool right(int x) override;
     bool forward(int x) override;
     bool back(int x) override;
-    bool cwx(int x) override;
+    bool cw(int x) override;
     bool ccw(int x) override;
     bool flip(string x) override;/// X---> l,r,f,b
     bool goXYZSpeed(int x, int y, int z, int speed) override;

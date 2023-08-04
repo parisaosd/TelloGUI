@@ -15,6 +15,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <thread>
 
 IMPLEMENT_CLASS(HostFrame, wxFrame)
 
@@ -22,6 +23,7 @@ HostFrame::~HostFrame() {}
 
 HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 {
+    freopen("GuiLog.txt", "w", stdout);
     wxInitAllImageHandlers();
 #ifdef TEST
     _telloControl = std::make_shared<TelloControlMock>();
@@ -71,7 +73,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     gs->Add(emptyButton());
     gs->Add(emptyButton());
     gs->Add(emptyButton());
-    gs->Add(arrowButton("arrow-up.png", "Move up"));
+    gs->Add(arrowButton("arrow-up.png", "Move forward", wxCommandEventHandler(HostFrame::OnButtonForwardClick)));
     gs->Add(emptyButton());
     //row 2
 
@@ -84,9 +86,9 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     gs->Add(emptyButton());
     gs->Add(emptyButton());
     gs->Add(emptyButton());
-    gs->Add(arrowButton("arrow-left.png", "Move left"));
+    gs->Add(arrowButton("arrow-left.png", "Turn left", wxCommandEventHandler(HostFrame::OnButtonTurnLeftClick)));
     gs->Add(emptyButton());
-    gs->Add(arrowButton("arrow-right.png", "Move right"));
+    gs->Add(arrowButton("arrow-right.png", "Turn right", wxCommandEventHandler(HostFrame::OnButtonTurnRightClick)));
 
     //row 3
     gs->Add(emptyButton());
@@ -98,7 +100,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     gs->Add(emptyButton());
     gs->Add(emptyButton());
     gs->Add(emptyButton());
-    gs->Add(arrowButton("arrow-down.png", "Move down"));
+    gs->Add(arrowButton("arrow-down.png", "Move back", wxCommandEventHandler(HostFrame::OnButtonBackClick)));
     gs->Add(emptyButton());
 
 
@@ -115,25 +117,70 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
 void HostFrame::OnButtonUpClick(wxCommandEvent& e)
 {
-    _telloControl->takeoff();
+    std::thread t([this]()
+        {
+            if (_telloControl->isLanded())
+            {
+                _telloControl->takeoff();
+            }
+            else
+            {
+                _telloControl->up(20);
+            }
+        });
+    t.detach();
 }
 
 void HostFrame::OnButtonDownClick(wxCommandEvent& e)
 {
-    _telloControl->land();
+    std::thread t([this]()
+        {
+            if (_telloControl->isLanded())
+            {
+                _telloControl->land();
+            }
+            else
+            {
+                _telloControl->down(20);
+            }
+        });
+    t.detach();
 }
 
 void HostFrame::OnButtonLeftClick(wxCommandEvent& e)
 {
-    if (!_telloControl->left(10))
-    {
-        cout << "error moving left" << endl;
-    }
+    std::thread t([this]() { _telloControl->left(20); });
+    t.detach();
 }
 
 void HostFrame::OnButtonRightClick(wxCommandEvent& e)
 {
-    _telloControl->right(10);
+    std::thread t([this]() { _telloControl->right(20); });
+    t.detach();
+}
+
+void HostFrame::OnButtonTurnRightClick(wxCommandEvent& e)
+{
+    std::thread t([this]() { _telloControl->cw(20); });
+    t.detach();
+}
+
+void HostFrame::OnButtonTurnLeftClick(wxCommandEvent& e)
+{
+    std::thread t([this]() { _telloControl->ccw(20); });
+    t.detach();
+}
+
+void HostFrame::OnButtonForwardClick(wxCommandEvent& e)
+{
+    std::thread t([this]() { _telloControl->forward(20); });
+    t.detach();
+}
+
+void HostFrame::OnButtonBackClick(wxCommandEvent& e)
+{
+    std::thread t([this]() { _telloControl->back(20); });
+    t.detach();
 }
 
 wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip, wxObjectEventFunction function) {

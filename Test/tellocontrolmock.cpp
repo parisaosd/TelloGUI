@@ -37,6 +37,11 @@ int TelloControlMock::wifi()
 	return 0;
 }
 
+bool TelloControlMock::isLanded()
+{
+	return false;
+}
+
 bool TelloControlMock::takeoff()
 {
 	std::cout << "taking off..." << std::endl;
@@ -103,9 +108,9 @@ bool TelloControlMock::back(int x)
 	return false;
 }
 
-bool TelloControlMock::cwx(int x)
+bool TelloControlMock::cw(int x)
 {
-	std::cout << "cwx..." << std::endl;
+	std::cout << "cw..." << std::endl;
 	return false;
 }
 

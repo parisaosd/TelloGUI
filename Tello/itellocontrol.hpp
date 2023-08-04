@@ -9,6 +9,8 @@ public:
 
     virtual char* getStreamData() = 0;
 
+    virtual bool isLanded() = 0;
+
 	virtual int batteryLevel() = 0;
 	virtual int speed() = 0;
     virtual int time() = 0;
@@ -25,7 +27,7 @@ public:
     virtual bool right(int x) = 0;
     virtual bool forward(int x) = 0;
     virtual bool back(int x) = 0;
-    virtual bool cwx(int x) = 0;
+    virtual bool cw(int x) = 0;
     virtual bool ccw(int x) = 0;
     virtual bool flip(std::string x) = 0;
     virtual bool goXYZSpeed(int x, int y, int z, int speed) = 0;

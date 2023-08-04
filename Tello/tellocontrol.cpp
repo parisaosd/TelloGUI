@@ -70,6 +70,11 @@ int TelloControl::wifi()
     return std::atoi(udpClient->send(_strdup("wifi?")));
 }
 
+bool TelloControl::isLanded()
+{
+    return state->getLanded();
+}
+
 ///Control
 bool TelloControl::takeoff()
 {
@@ -133,6 +138,7 @@ bool TelloControl::left(int x)
     auto command = std::string("left ") + std::to_string(x);
     return boolResult(udpClient->send(command.data()));
 }
+
 bool TelloControl::right(int x)
 {
     auto command = std::string("right ") + std::to_string(x);
@@ -148,15 +154,16 @@ bool TelloControl::back(int x)
     auto command = std::string("back ") + std::to_string(x);
     return boolResult(udpClient->send(command.data()));
 }
-bool TelloControl::cwx(int x)
+bool TelloControl::cw(int x)
 {
-    auto command = std::string("cwx ") + std::to_string(x);
+    auto command = std::string("cw ") + std::to_string(x);
     return boolResult(udpClient->send(command.data()));
 }
 
 bool TelloControl::ccw(int x)
 {
-    return false;
+    auto command = std::string("ccw ") + std::to_string(x);
+    return boolResult(udpClient->send(command.data()));
 }
 
 bool TelloControl::flip(string x)
