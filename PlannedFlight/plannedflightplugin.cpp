@@ -20,21 +20,27 @@ wxWindow* PlannedFlightPlugin::GetGUI(wxWindow* parent)
 	delete gui;
 	gui = new wxWindow(parent, wxID_ANY);
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
-	wxButton* b = new wxButton(gui, wxID_ANY, _("Planned flight"));
+	wxButton* buttonOpen = new wxButton(gui, wxID_ANY, _("Planned flight"));
+	wxButton* buttonStop = new wxButton(gui, wxID_ANY, _("Stop"));
 	//Use connect in this case as static event tables won't work
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
-	b->Connect(wxID_ANY,
+	buttonOpen->Connect(wxID_ANY,
 		wxEVT_COMMAND_BUTTON_CLICKED,
-		wxCommandEventHandler(PlannedFlightPlugin::OnButton), NULL, this
+		wxCommandEventHandler(PlannedFlightPlugin::OnButtonOpen), NULL, this
+	);
+	buttonStop->Connect(wxID_ANY,
+		wxEVT_COMMAND_BUTTON_CLICKED,
+		wxCommandEventHandler(PlannedFlightPlugin::OnButtonStop), NULL, this
 	);
 
-	box->Add(b, 0, wxALIGN_CENTER | wxALL, 5);
+	box->Add(buttonOpen, 0, wxALIGN_CENTER | wxALL, 5);
+	box->Add(buttonStop, 0, wxALIGN_CENTER | wxALL, 5);
 	gui->SetSizer(box);
 	gui->Layout();
 	return gui;
 }
 
-void PlannedFlightPlugin::OnButton(wxCommandEvent& e)
+void PlannedFlightPlugin::OnButtonOpen(wxCommandEvent& e)
 {
 	wxFileDialog* openFileDialog = new wxFileDialog(gui, _("Open fligh plan file"), "", "",
 		"TXT files (*.txt)|*.txt", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
@@ -57,4 +63,9 @@ void PlannedFlightPlugin::OnButton(wxCommandEvent& e)
 	std::string output = sbuf.str(); // get a copy of the underlying string
 	//wxMessageBox(tfile.GetFirstLine());
 	wxMessageBox(output);	
+}
+
+void PlannedFlightPlugin::OnButtonStop(wxCommandEvent& e)
+{	
+
 }

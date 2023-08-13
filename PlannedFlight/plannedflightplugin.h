@@ -10,7 +10,8 @@ public:
 	PlannedFlightPlugin(std::shared_ptr<ITelloControl> telloControl);
 	virtual wxWindow* GetGUI(wxWindow* parent);
 
-	void OnButton(wxCommandEvent& e);
+	void OnButtonOpen(wxCommandEvent& e);
+	void OnButtonStop(wxCommandEvent& e);
 private:
 	wxWindow* gui;
 	std::shared_ptr<ITelloControl> _telloControl;
