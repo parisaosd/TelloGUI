@@ -1,4 +1,4 @@
-//#define TEST
+#define TEST
 #include "hostframe.h"
 
 #include "iplugin.hpp"
@@ -16,6 +16,8 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <thread>
+
+const int SPACER_SIZE = 35;
 
 IMPLEMENT_CLASS(HostFrame, wxFrame)
 
@@ -64,44 +66,44 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
 
     // row 1 
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-up.png", "Move up", wxCommandEventHandler(HostFrame::OnButtonUpClick)));
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-up.png", "Move forward", wxCommandEventHandler(HostFrame::OnButtonForwardClick)));
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
     //row 2
 
 
     gs->Add(arrowButton("arrow-left.png", "Move left", wxCommandEventHandler(HostFrame::OnButtonLeftClick)));
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-right.png", "Move right", wxCommandEventHandler(HostFrame::OnButtonRightClick)));
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-left.png", "Turn left", wxCommandEventHandler(HostFrame::OnButtonTurnLeftClick)));
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-right.png", "Turn right", wxCommandEventHandler(HostFrame::OnButtonTurnRightClick)));
 
     //row 3
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-down.png", "Move down", wxCommandEventHandler(HostFrame::OnButtonDownClick)));
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-down.png", "Move back", wxCommandEventHandler(HostFrame::OnButtonBackClick)));
-    gs->Add(emptyButton());
+    gs->AddSpacer(SPACER_SIZE);
 
 
     hboxMain->Add(gs);
@@ -197,14 +199,6 @@ wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip, wxObjectE
             function, NULL, this
         );
     }
-    return button;
-}
-
-wxBitmapButton* HostFrame::emptyButton() {
-    wxBitmap bitmap;
-    wxBitmapButton* button = new wxBitmapButton(this, -1, bitmap, wxPoint(0, 0), wxSize(35, 35), 0);
-    button->SetBackgroundColour(wxColour(255, 255, 255)); // set the background colour to white
-
     return button;
 }
 

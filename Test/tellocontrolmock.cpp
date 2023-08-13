@@ -11,6 +11,7 @@ cv::Mat TelloControlMock::getVideoFrame()
 {
 	streamon();
 	std::cout << "get Stream Data..." << std::endl;
+	return cv::Mat();
 }
 
 bool TelloControlMock::isStreamOn()
