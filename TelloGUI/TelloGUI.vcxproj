@@ -139,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Tello;C:\Users\paris\source\repos\Tello\TelloGUI\ExampleDatePlugin;C:\wxWidgets2\include;C:\wxWidgets2\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\wxWidgets2\lib\vc_x64_lib\mswu;C:\Users\paris\source\repos\Tello\TelloGUI\ExamplePlugin;C:\OpenCv\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Tello;C:\wxWidgets2\include;C:\wxWidgets2\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\wxWidgets2\lib\vc_x64_lib\mswu;C:\OpenCv\opencv\build\include;C:\Users\paris\source\repos\Tello\TelloGUI\PhotoVideo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

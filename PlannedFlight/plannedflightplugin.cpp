@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "plannedflight.h"
+#include "plannedflightplugin.h"
 
 #include "flightplan.hpp"
 
@@ -10,12 +10,12 @@
 #include <sstream>
 #include <cctype>
 
-PlannedFlight::PlannedFlight(std::shared_ptr<ITelloControl> telloControl)
+PlannedFlightPlugin::PlannedFlightPlugin(std::shared_ptr<ITelloControl> telloControl)
 {
 	_telloControl = telloControl;
 }
 
-wxWindow* PlannedFlight::GetGUI(wxWindow* parent)
+wxWindow* PlannedFlightPlugin::GetGUI(wxWindow* parent)
 {
 	delete gui;
 	gui = new wxWindow(parent, wxID_ANY);
@@ -25,7 +25,7 @@ wxWindow* PlannedFlight::GetGUI(wxWindow* parent)
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
 	b->Connect(wxID_ANY,
 		wxEVT_COMMAND_BUTTON_CLICKED,
-		wxCommandEventHandler(PlannedFlight::OnButton), NULL, this
+		wxCommandEventHandler(PlannedFlightPlugin::OnButton), NULL, this
 	);
 
 	box->Add(b, 0, wxALIGN_CENTER | wxALL, 5);
@@ -34,7 +34,7 @@ wxWindow* PlannedFlight::GetGUI(wxWindow* parent)
 	return gui;
 }
 
-void PlannedFlight::OnButton(wxCommandEvent& e)
+void PlannedFlightPlugin::OnButton(wxCommandEvent& e)
 {
 	wxFileDialog* openFileDialog = new wxFileDialog(gui, _("Open fligh plan file"), "", "",
 		"TXT files (*.txt)|*.txt", wxFD_OPEN | wxFD_FILE_MUST_EXIST);

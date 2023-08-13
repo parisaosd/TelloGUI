@@ -7,11 +7,10 @@
 #else
 #include "../Tello/tellocontrol.hpp"
 #endif // TEST
-#include "../PhotoVideo/photovideo.h"
 #include <wx/dynlib.h>
 #include <wx/file.h>
-#include "exampledateplugin.h"
-#include "plannedflight.h"
+#include "plannedflightplugin.h"
+#include "photovideoplugin.h"
 
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -207,8 +206,8 @@ void HostFrame::LoadPlugins()
     std::vector<IPlugin*> plugins = 
     {
         //TODO All Plugins depend on OpenCV - this can be improved by splitting video functionality from controlling the drone.
-        new PhotoVideo(_telloControl),
-        new PlannedFlight(_telloControl)
+        new PhotoVideoPlugin(_telloControl),
+        new PlannedFlightPlugin(_telloControl)
     };
 
     wxBoxSizer* s = new wxBoxSizer(wxHORIZONTAL);

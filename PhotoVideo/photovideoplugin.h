@@ -7,10 +7,10 @@
 #include "../Tello/itellocontrol.hpp"
 
 //this will be our actual plugin.
-class PhotoVideo : public IPlugin
+class PhotoVideoPlugin : public IPlugin
 {
 public:
-	PhotoVideo(std::shared_ptr<ITelloControl> telloControl);
+	PhotoVideoPlugin(std::shared_ptr<ITelloControl> telloControl);
 	virtual wxWindow* GetGUI(wxWindow* parent);
 
 private:

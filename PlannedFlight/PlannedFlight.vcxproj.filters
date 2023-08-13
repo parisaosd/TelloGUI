@@ -21,7 +21,7 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="plannedflight.h">
+    <ClInclude Include="plannedflightplugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="flightplan.hpp">
@@ -32,7 +32,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="plannedflight.cpp">
+    <ClCompile Include="plannedflightplugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">

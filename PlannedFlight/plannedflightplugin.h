@@ -4,10 +4,10 @@
 #include "../Tello/itellocontrol.hpp"
 
 //this will be our actual plugin.
-class PlannedFlight : public IPlugin
+class PlannedFlightPlugin : public IPlugin
 {
 public:
-	PlannedFlight(std::shared_ptr<ITelloControl> telloControl);
+	PlannedFlightPlugin(std::shared_ptr<ITelloControl> telloControl);
 	virtual wxWindow* GetGUI(wxWindow* parent);
 
 	void OnButton(wxCommandEvent& e);
