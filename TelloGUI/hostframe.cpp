@@ -206,9 +206,8 @@ void HostFrame::LoadPlugins()
 {
     std::vector<IPlugin*> plugins = 
     {
+        //TODO All Plugins depend on OpenCV - this can be improved by splitting video functionality from controlling the drone.
         new PhotoVideo(_telloControl),
-        new ExampleDatePlugin(),
-        //Add itellocontrol  
         new PlannedFlight(_telloControl)
     };
 
