@@ -15,8 +15,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tello", "Tello\Tello.vcxpro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{41249048-411C-4BE7-82E5-CA6B2548EB2C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UpdTest", "UpdTest\UpdTest.vcxproj", "{267308D9-3A57-40F1-B409-55FB5BD0D94C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -65,14 +63,6 @@ Global
 		{66A11DA7-FDB4-4088-8427-4F04B792F1DF}.Release|x64.Build.0 = Release|x64
 		{66A11DA7-FDB4-4088-8427-4F04B792F1DF}.Release|x86.ActiveCfg = Release|Win32
 		{66A11DA7-FDB4-4088-8427-4F04B792F1DF}.Release|x86.Build.0 = Release|Win32
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x64.ActiveCfg = Release|x64
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x64.Build.0 = Release|x64
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x86.ActiveCfg = Debug|Win32
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Debug|x86.Build.0 = Debug|Win32
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x64.ActiveCfg = Release|x64
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x64.Build.0 = Release|x64
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x86.ActiveCfg = Release|Win32
-		{267308D9-3A57-40F1-B409-55FB5BD0D94C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
