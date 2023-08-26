@@ -16,7 +16,7 @@ FlightPlanValidator::FlightPlanValidator(){}
 
 bool FlightPlanValidator::isValid(string command){
     /// Todo... add all commands to the array
-    string sdkCommands[9]={"command","battery?","speed?","time?","wifi?","takeoff","land","streamoff","streamon"};
+    string sdkCommands[18]={"command","battery?","speed?","time?","wifi?","takeoff","land","streamoff","streamon", "up","down","left","right","forward","back","cw","ccw","flip" };
     for (int i = 0; i < sdkCommands->size(); i++)
     {
         regex r(command + "(.*)");

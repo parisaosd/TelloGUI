@@ -20,6 +20,8 @@ FlightPlan::FlightPlan(const char* filePath, std::shared_ptr<ITelloControl> tell
 {
     FlightPlan::filePath = new string(filePath);
     flightPlanValidator = std::make_shared<FlightPlanValidator>();
+    _emergencyStop = false;
+    _commands = parse();
 }
 
 FlightPlan::~FlightPlan()
@@ -36,17 +38,20 @@ vector<std::string> FlightPlan::parse(){
         commands.push_back(command);
     }
     MyReadFile.close();
+    cout << "Parsed. Number of commands: " << commands.size() << endl;
     return commands;
 }
 
 /// Itterating through array of commands and calling the generic SDK command for each element of the array
 bool FlightPlan::execute()
 {
-    
-    const auto commands = parse();
-    cout<<"Executing flight plan. Number of commands: "<<commands.size()<<endl;
-    for (string command : commands)
+    _emergencyStop = false;
+    for (string command : _commands)
     {
+        if (_emergencyStop)
+        {
+            return false;
+        }
         if(flightPlanValidator->isValid(command))
         {
             auto result = telloControl->genericCommand(command.data());
@@ -57,6 +62,11 @@ bool FlightPlan::execute()
         }
     }
     return true;
+}
+
+void FlightPlan::stop()
+{
+    _emergencyStop = true;
 }
 
 

@@ -1,4 +1,4 @@
-#define TEST
+//#define TEST
 #include "hostframe.h"
 
 #include "iplugin.hpp"

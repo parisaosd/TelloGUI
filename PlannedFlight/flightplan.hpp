@@ -25,12 +25,15 @@ public:
     FlightPlan(const char* filePath, std::shared_ptr<ITelloControl> telloControl);
     ~FlightPlan();
     bool execute();
+    void stop();
     
 private:
     string* filePath;
     vector<std::string> parse();
     std::shared_ptr<ITelloControl> telloControl;
     std::shared_ptr<FlightPlanValidator> flightPlanValidator;
+    atomic<bool> _emergencyStop;
+    std::vector<string> _commands;
 };
 
 #endif /* flightplan_hpp */

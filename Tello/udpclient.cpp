@@ -17,7 +17,7 @@
 
 UdpClient::UdpClient(const char* address,int port) {
     //Redirect logging from console to a file
-    freopen("UdpClientLog.txt", "w", stdout);
+    //freopen("UdpClientLog.txt", "w", stdout);
     // Create a socket
     WSADATA wsa;
     if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)

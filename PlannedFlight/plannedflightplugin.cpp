@@ -52,20 +52,16 @@ void PlannedFlightPlugin::OnButtonOpen(wxCommandEvent& e)
 	//wxTextFile tfile;
 	//tfile.Open(openFileDialog->GetPath());
 
-	FlightPlan flightPlan(openFileDialog->GetPath(), _telloControl);
+	_flightPlan = std::make_shared<FlightPlan>(openFileDialog->GetPath(), _telloControl);
 
-	std::stringbuf sbuf(std::ios::out); // create a stringbuf
-	auto oldbuf = std::cout.rdbuf(std::addressof(sbuf)); // associate the stringbuf with std::cout
-
-	flightPlan.execute();
-
-	std::cout.rdbuf(oldbuf); // restore cout's original buffer
-	std::string output = sbuf.str(); // get a copy of the underlying string
-	//wxMessageBox(tfile.GetFirstLine());
-	wxMessageBox(output);	
+	std::thread t([this](){_flightPlan->execute();});
+	t.detach();
 }
 
 void PlannedFlightPlugin::OnButtonStop(wxCommandEvent& e)
 {	
-
+	if (_flightPlan != nullptr)
+	{
+		_flightPlan->stop();
+	}
 }

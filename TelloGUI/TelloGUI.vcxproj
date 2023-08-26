@@ -164,9 +164,6 @@
     <Image Include="arrow-left.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExampleDatePlugin\ExampleDatePlugin.vcxproj">
-      <Project>{8280ac26-6708-474e-b1d8-86a374be1555}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\PhotoVideo\PhotoVideo.vcxproj">
       <Project>{6dad5192-e334-4703-9df5-e3d87a5c63ff}</Project>
     </ProjectReference>

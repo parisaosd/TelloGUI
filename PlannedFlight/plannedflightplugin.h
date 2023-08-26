@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "iplugin.hpp"
 #include "../Tello/itellocontrol.hpp"
+#include "flightplan.hpp"
 
 //this will be our actual plugin.
 class PlannedFlightPlugin : public IPlugin
@@ -15,4 +16,5 @@ public:
 private:
 	wxWindow* gui;
 	std::shared_ptr<ITelloControl> _telloControl;
+	std::shared_ptr<FlightPlan> _flightPlan;
 };
