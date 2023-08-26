@@ -1,4 +1,4 @@
-//#define TEST
+#define TEST
 #include "hostframe.h"
 
 #include "iplugin.hpp"
@@ -210,7 +210,7 @@ void HostFrame::LoadPlugins()
         new PlannedFlightPlugin(_telloControl)
     };
 
-    wxBoxSizer* s = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* s = new wxBoxSizer(wxVERTICAL);
 
     for(IPlugin* plugin : plugins)
     {

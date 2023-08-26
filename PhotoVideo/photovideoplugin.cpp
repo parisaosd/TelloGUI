@@ -21,6 +21,8 @@ wxWindow* PhotoVideoPlugin::GetGUI(wxWindow* parent)
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
 	wxButton* bStream = new wxButton(dlg, wxID_ANY, _("Camera"));
 	wxButton* bScreenshot = new wxButton(dlg, wxID_ANY, _("Screenshot"));
+	wxButton* bStartVideoRecording = new wxButton(dlg, wxID_ANY, _("Start recording"));
+	wxButton* bStopVideoRecording = new wxButton(dlg, wxID_ANY, _("Stop recording"));
 	//Use connect in this case as static event tables won't work
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
 	bStream->Connect(wxID_ANY,
@@ -31,9 +33,19 @@ wxWindow* PhotoVideoPlugin::GetGUI(wxWindow* parent)
 		wxEVT_COMMAND_BUTTON_CLICKED,
 		wxCommandEventHandler(PhotoVideoPlugin::OnScreenshotButton), NULL, this
 	);
+	bStartVideoRecording->Connect(wxID_ANY,
+		wxEVT_COMMAND_BUTTON_CLICKED,
+		wxCommandEventHandler(PhotoVideoPlugin::OnStartRecordingButton), NULL, this
+	);
+	bStopVideoRecording->Connect(wxID_ANY,
+		wxEVT_COMMAND_BUTTON_CLICKED,
+		wxCommandEventHandler(PhotoVideoPlugin::OnStopRecordingButton), NULL, this
+	);
 
 	box->Add(bStream, 0, wxALIGN_CENTER | wxALL, 5);
 	box->Add(bScreenshot, 0, wxALIGN_CENTER | wxALL, 5);
+	box->Add(bStartVideoRecording, 0, wxALIGN_CENTER | wxALL, 5);
+	box->Add(bStopVideoRecording, 0, wxALIGN_CENTER | wxALL, 5);
 	dlg->SetSizer(box);
 	dlg->Layout();
 	return dlg;
@@ -58,6 +70,16 @@ void PhotoVideoPlugin::OnScreenshotButton(wxCommandEvent& e)
 	{
 		wxMessageBox(wxT("Could not save a screenshot. CHeck if stream is running."));
 	}
+}
+
+void PhotoVideoPlugin::OnStartRecordingButton(wxCommandEvent& e)
+{
+	wxMessageBox(wxT("Not implemented."));
+}
+
+void PhotoVideoPlugin::OnStopRecordingButton(wxCommandEvent& e)
+{
+	wxMessageBox(wxT("Not implemented."));
 }
 
 void PhotoVideoPlugin::ShowStreamFrame(wxTimerEvent& e)

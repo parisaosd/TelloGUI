@@ -19,5 +19,7 @@ private:
 
 	void OnStreamButton(wxCommandEvent& e);
 	void OnScreenshotButton(wxCommandEvent& e);
+	void OnStartRecordingButton(wxCommandEvent& e);
+	void OnStopRecordingButton(wxCommandEvent& e);
 	void ShowStreamFrame(wxTimerEvent& e);
 };
