@@ -11,6 +11,7 @@
 PhotoVideoPlugin::PhotoVideoPlugin(std::shared_ptr<ITelloControl> telloControl)
 {
 	_telloControl = telloControl;
+	_timer = new wxTimer(this, 5);
 }
 
 wxWindow* PhotoVideoPlugin::GetGUI(wxWindow* parent)
@@ -22,7 +23,7 @@ wxWindow* PhotoVideoPlugin::GetGUI(wxWindow* parent)
 	wxButton* bStream = new wxButton(dlg, wxID_ANY, _("Camera"));
 	wxButton* bScreenshot = new wxButton(dlg, wxID_ANY, _("Screenshot"));
 	wxButton* bStartVideoRecording = new wxButton(dlg, wxID_ANY, _("Start recording"));
-	wxButton* bStopVideoRecording = new wxButton(dlg, wxID_ANY, _("Stop recording"));
+	wxButton* bStopVideoRecording = new wxButton(dlg, wxID_ANY, _("Stop video"));
 	//Use connect in this case as static event tables won't work
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
 	bStream->Connect(wxID_ANY,
@@ -55,8 +56,7 @@ void PhotoVideoPlugin::OnStreamButton(wxCommandEvent& e)
 {
 	_telloControl->streamon();
 	static const int INTERVAL = 1;
-	auto timer = new wxTimer(this, 5);
-	timer->Start(INTERVAL);
+	_timer->Start(INTERVAL);
 	Connect(5, wxEVT_TIMER, wxTimerEventHandler(PhotoVideoPlugin::ShowStreamFrame));
 }
 
@@ -74,17 +74,29 @@ void PhotoVideoPlugin::OnScreenshotButton(wxCommandEvent& e)
 
 void PhotoVideoPlugin::OnStartRecordingButton(wxCommandEvent& e)
 {
-	wxMessageBox(wxT("Not implemented."));
+	_videoWriter = cv::VideoWriter("video.avi",
+		cv::VideoWriter::fourcc('M', 'J', 'P', 'G'),
+		10, cv::Size(800, 600));
+	_isRecordingOn = true;
 }
 
 void PhotoVideoPlugin::OnStopRecordingButton(wxCommandEvent& e)
 {
-	wxMessageBox(wxT("Not implemented."));
+	_timer->Stop();
+	_isRecordingOn = false;
+	_telloControl->streamoff();
 }
 
 void PhotoVideoPlugin::ShowStreamFrame(wxTimerEvent& e)
 {
 	const cv::String windowName("Tello stream");
 	cv::namedWindow(windowName);
-	imshow(windowName, _telloControl->getVideoFrame());
+	auto frame = _telloControl->getVideoFrame();
+	imshow(windowName, frame);
+	if (_isRecordingOn && _videoWriter.isOpened())
+	{
+		cv::Mat resized;
+		cv::resize(frame, resized, cv::Size(800, 600));
+		_videoWriter.write(resized);
+	}
 }

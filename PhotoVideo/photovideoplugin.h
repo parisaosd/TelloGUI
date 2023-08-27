@@ -3,6 +3,7 @@
 #include "iplugin.hpp"
 
 #include <opencv2/opencv.hpp>
+#include <memory>
 
 #include "../Tello/itellocontrol.hpp"
 
@@ -16,6 +17,9 @@ public:
 private:
 	std::shared_ptr<ITelloControl> _telloControl;
 	wxWindow* _parent;
+	wxTimer* _timer;
+	std::atomic<bool> _isRecordingOn;
+	cv::VideoWriter _videoWriter;
 
 	void OnStreamButton(wxCommandEvent& e);
 	void OnScreenshotButton(wxCommandEvent& e);
