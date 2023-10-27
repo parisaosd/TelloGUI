@@ -13,23 +13,28 @@
 #include <string.h>
 #include <iostream>
 #include <stdexcept>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
 TelloControl::TelloControl()
 {
+    using namespace std::chrono_literals;
+    state = std::make_shared<State>();
     udpClient = std::make_shared<UdpClient>(_strdup("192.168.10.1"), 8889);
-    int attempts=5;
+    int attempts = 5;
     while(attempts>0){
         if(boolResult(udpClient->send(_strdup("command")))){
+            state->setOnline(true);
             break;
         }
         attempts--;
+        std::this_thread::sleep_for(2000ms);
         if (attempts==0) {
-            throw new std::runtime_error("Cannot initiate sdk mode.");
+            state->setOnline(false);
         }
     }
-    state = std::make_shared<State>();
 }
 
 char* TelloControl::genericCommand(const char* message)
@@ -98,6 +103,11 @@ int TelloControl::wifi()
 bool TelloControl::isLanded()
 {
     return state->getLanded();
+}
+
+bool TelloControl::isOnline()
+{
+    return state->getOnline();
 }
 
 ///Control

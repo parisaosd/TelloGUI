@@ -29,6 +29,8 @@ UdpClient::UdpClient(const char* address,int port) {
     if (sock < 0) {
         std::cerr << "Failed to create socket" << std::endl;
     }
+    u_long nbio = 1;
+    ::ioctlsocket(sock, FIONBIO, &nbio);
     
     std::memset(&dest_addr, 0, sizeof(dest_addr));
     dest_addr.sin_family = AF_INET;
@@ -54,6 +56,9 @@ char* UdpClient::send(const char* const message) {
     if (received_bytes < 0) {
         std::cerr << "Failed to receive message" << std::endl;
     };
+    if (received_bytes < 1) {
+        return _strdup("error");
+    }
     buffer[received_bytes] = '\0';
     std::cout << "Message received: " << buffer << std::endl;
     return buffer;

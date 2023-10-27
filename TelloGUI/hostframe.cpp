@@ -34,7 +34,11 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
     pluginsPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);  
 
-    int batteryLevel = _telloControl->batteryLevel();
+    int batteryLevel = 0;
+    if (_telloControl->isOnline()) {
+        batteryLevel = _telloControl->batteryLevel();
+    }
+
     wxBoxSizer* vbox = new wxBoxSizer(wxVERTICAL);
 
     wxBoxSizer* hboxToolbar = new wxBoxSizer(wxHORIZONTAL);
@@ -43,7 +47,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
 
     //Battery 
-    wxStaticText* batteryLabel = new wxStaticText(this, 0, "Battery Level: ");
+    wxStaticText* batteryLabel = new wxStaticText(this, 0, " Battery Level: ");
     wxStaticText* batteryLabelValue = new wxStaticText(this, 0, wxString::Format(wxT("%d"), batteryLevel));
 
     hboxToolbar->Add(batteryLabel);
@@ -51,13 +55,16 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
     // to create buttons in tool bar ?????????????????????????????????????????????? 
 
-    //Speed 
-    int speedLevel = _telloControl->batteryLevel();
-    wxStaticText* speedLabel = new wxStaticText(this, 0, "Speed Level: ");
-    wxStaticText* speedLabelValue = new wxStaticText(this, 0, wxString::Format(wxT("%d"), speedLevel));
+    //Connection status
+    wxString connectionStatus = "offline";
+    if (_telloControl->isOnline()) {
+        connectionStatus = "connected";
+    }
+    wxStaticText* connectionLabel = new wxStaticText(this, 0, "  Wi-fi connection: ");
+    wxStaticText* connectionValue = new wxStaticText(this, 0, connectionStatus);
 
-    hboxToolbar->Add(speedLabel);
-    hboxToolbar->Add(speedLabelValue);
+    hboxToolbar->Add(connectionLabel);
+    hboxToolbar->Add(connectionValue);
 
     //wxGridSizer* gs = new wxGridSizer(3, 3, 0, 0);
     wxGridSizer* gs = new wxGridSizer(3, 11, 0, 0);

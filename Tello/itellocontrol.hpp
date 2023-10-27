@@ -13,6 +13,7 @@ public:
     virtual bool saveScreenshotJpeg(std::string filename) = 0;
 
     virtual bool isLanded() = 0;
+    virtual bool isOnline() = 0;
 
 	virtual int batteryLevel() = 0;
 	virtual int speed() = 0;

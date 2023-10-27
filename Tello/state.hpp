@@ -18,10 +18,12 @@ public:
     bool getLanded();
     void setStreamStatus(bool x);
     bool getStreamStatus();
+    bool getOnline();
+    void setOnline(bool x);
     
 private:
     bool isLanded = true;
     bool isStreamOn = false;
-
+    bool isOnline = false;
 };
 #endif /* state_hpp */

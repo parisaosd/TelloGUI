@@ -26,3 +26,13 @@ bool State::getStreamStatus()
 {
     return isStreamOn;
 }
+
+bool State::getOnline()
+{
+    return isOnline;
+}
+
+void State::setOnline(bool x)
+{
+    isOnline = x;
+}

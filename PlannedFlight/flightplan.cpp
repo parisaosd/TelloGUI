@@ -26,7 +26,7 @@ FlightPlan::FlightPlan(const char* filePath, std::shared_ptr<ITelloControl> tell
 
 FlightPlan::~FlightPlan()
 {
-    delete filePath;   
+    delete filePath;
 }
 
 /// Commands in the uploaded flight plan is transferred  to an array of commands

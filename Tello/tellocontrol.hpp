@@ -34,6 +34,7 @@ public:
     int time() override;
     int wifi() override;
     bool isLanded() override;
+    bool isOnline() override;
     
     
     ///new Control ------->>>>> check the space between letters in commands ? 
