@@ -7,7 +7,7 @@
 
 #include "../Tello/itellocontrol.hpp"
 
-//this will be our actual plugin.
+
 class PhotoVideoPlugin : public IPlugin
 {
 public:

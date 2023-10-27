@@ -36,30 +36,41 @@ char* TelloControl::genericCommand(const char* message)
 {
     return udpClient->send(message);
 }
-
+//This method returns only one frame at a time using openCv library
 cv::Mat TelloControl::getVideoFrame()
 {
     if (_videoCapture == nullptr) {
         _videoCapture = std::make_shared<cv::VideoCapture>("udp://@0.0.0.0:11111");
         _videoCapture->set(cv::CAP_PROP_BUFFERSIZE, 0);
+        //We set the buffer size through this constant. 0 means frames are not being buffered and are processed immediately after being captured
+        //Effectively turning off buffering by setting cv::CAP_PROP_BUFFERSIZE to 0. This means frames 
+        //are not buffered and not immediatly processed which helps to minimize the delay between capturing and processing them because latency
+        //is crucial in handling the media data from drone's camera.
     }
     cv::Mat frame;
     _videoCapture->read(frame);
     _latestFrame = frame;
     return frame;
 }
-
+//The stream status is a constant which is initialy set to False and it can change by ????????
 bool TelloControl::isStreamOn()
 {
     return state->getStreamStatus();
 }
 
+//This method is used to save a screenshot of the latest frame captured from a video stream to a JPEG file.
+//Where the value of -latestFrame is assigned ? 
 bool TelloControl::saveScreenshotJpeg(std::string filename)
 {
+    //!isStreamOn():If the streamOn is True that stream is not on, (Negation of the isStreamOn() value
+    //_videoCapture == nullptr : meaning that the video capture instance is not properly initialized
+    //!_videoCapture->isOpened():checks if the _videoCapture instance is not opened, indicating that it's not capturing any video stream.
     if (!isStreamOn() || _videoCapture == nullptr || !_videoCapture->isOpened())
     {
         return false;
     }
+    //imwrite is an openCV function which saves the _latestFrame.
+    //It appends .jpg to the provided filename and uses _latestFrame as the image data to save
     cv::imwrite(filename + ".jpg", _latestFrame);
     return true;
 }
@@ -184,6 +195,7 @@ bool TelloControl::ccw(int x)
     return boolResult(udpClient->send(command.data()));
 }
 
+//This method should be checked 
 bool TelloControl::flip(string x)
 {
     if (x=="l"||x=="r"||x=="f"||x=="b"){
@@ -193,10 +205,19 @@ bool TelloControl::flip(string x)
         throw std::invalid_argument("Flip directions should be l(Left),r(Righ),b(Back),f(Forward)");
     }
 }
+// this method should be checked 
 bool TelloControl::goXYZSpeed(int x, int y, int z, int speed)
 {
+   /* if (x < -500 || x > 500 || y < -500 || y > 500 || z < -500 || z > 500 || speed >= 100) {
+        auto command = std::string("go ") + std::to_string(x) + std::to_string(x) + std::to_string(z) + std::to_string(speed);
+        return boolResult(udpClient->send(command.data()));
+    }
+    else {
+        throw std::invalid_argument("Invalid range for x,y,z and speed");
+    }
+    }*/
     //return true;
-    if ((x >= -500) & (y>= -500) & (z >= -500) & (speed > 10) || (x <= -500) & (y <= -500) & (z <= -500) & (speed < 100)) {
+    if (((x >= -500) && (y >= -500) && (z >= -500) && (speed) > 10) || ((x <= -500) && (y <= -500) && (z <= -500) && (speed) < 100)) {
         auto command=std::string("go ")+ std::to_string(x) + std::to_string(x)+ std::to_string(z)+ std::to_string(speed);
         return boolResult(udpClient->send(command.data()));
     }else{
@@ -212,4 +233,5 @@ bool TelloControl::stop()
 bool TelloControl::boolResult(char* const input)
 {
     return strcmp(input, "ok") == 0;
+    //Compare the input value with "Ok" 
 }
