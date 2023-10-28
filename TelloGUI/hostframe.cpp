@@ -83,18 +83,17 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     gs->AddSpacer(SPACER_SIZE);
     //row 2
 
-
-    gs->Add(arrowButton("arrow-left.png", "Move left", wxCommandEventHandler(HostFrame::OnButtonLeftClick)));
-    gs->AddSpacer(SPACER_SIZE);
-    gs->Add(arrowButton("arrow-right.png", "Move right", wxCommandEventHandler(HostFrame::OnButtonRightClick)));
-    gs->AddSpacer(SPACER_SIZE);
-    gs->AddSpacer(SPACER_SIZE);
-    gs->AddSpacer(SPACER_SIZE);
-    gs->AddSpacer(SPACER_SIZE);
-    gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-left.png", "Turn left", wxCommandEventHandler(HostFrame::OnButtonTurnLeftClick)));
     gs->AddSpacer(SPACER_SIZE);
     gs->Add(arrowButton("arrow-right.png", "Turn right", wxCommandEventHandler(HostFrame::OnButtonTurnRightClick)));
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->Add(arrowButton("arrow-left.png", "Move left", wxCommandEventHandler(HostFrame::OnButtonLeftClick)));
+    gs->AddSpacer(SPACER_SIZE);
+    gs->Add(arrowButton("arrow-right.png", "Move right", wxCommandEventHandler(HostFrame::OnButtonRightClick)));
 
     //row 3
     gs->AddSpacer(SPACER_SIZE);
