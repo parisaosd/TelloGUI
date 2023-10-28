@@ -9,6 +9,7 @@
 #define udpclient_hpp
 
 #include <stdio.h>
+#include <mutex>
 
 #include <WinSock2.h>
 
@@ -26,6 +27,7 @@ private:
     ///Stores file descriptor for created socket.
     SOCKET sock;
     sockaddr_in dest_addr;
+    std::mutex _mutex;
 };
 
 #endif /* udpclient_hpp */

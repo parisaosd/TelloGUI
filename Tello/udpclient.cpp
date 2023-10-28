@@ -44,6 +44,7 @@ UdpClient::~UdpClient() {
 }
 /// To send commands/messages to the drone
 char* UdpClient::send(const char* const message) {
+    _mutex.lock();
     size_t message_len = std::strlen(message);
     long sent_bytes = sendto(sock, message, message_len, 0, reinterpret_cast<sockaddr*>(&dest_addr), sizeof(dest_addr));
     if (sent_bytes < 0) {
@@ -56,6 +57,7 @@ char* UdpClient::send(const char* const message) {
     if (received_bytes < 0) {
         std::cerr << "Failed to receive message" << std::endl;
     };
+    _mutex.unlock();
     if (received_bytes < 1) {
         return _strdup("error");
     }
