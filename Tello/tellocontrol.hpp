@@ -63,6 +63,8 @@ private:
     std::shared_ptr<cv::VideoCapture> _videoCapture;
     cv::Mat _latestFrame;
 
+
+
     bool boolResult(char* const input);
 
 };

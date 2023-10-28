@@ -83,7 +83,18 @@ bool TelloControl::saveScreenshotJpeg(std::string filename)
 /// Status --> Read
 int TelloControl::batteryLevel()
 {
-    return std::atoi(udpClient->send(_strdup("battery?")));
+    int attempts = 5;
+    int battery = 0;
+    while (attempts > 0) {
+        int response = std::atoi(udpClient->send(_strdup("battery?")));
+        if (response > 0) {
+            battery = response;
+            break;
+        }
+        attempts--;
+        std::this_thread::sleep_for(500ms);
+    }
+    return battery;
 }
 
 int TelloControl::speed()
