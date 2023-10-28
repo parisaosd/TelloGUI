@@ -215,20 +215,11 @@ bool TelloControl::flip(string x)
         throw std::invalid_argument("Flip directions should be l(Left),r(Righ),b(Back),f(Forward)");
     }
 }
-// this method should be checked 
+
 bool TelloControl::goXYZSpeed(int x, int y, int z, int speed)
 {
-   /* if (x < -500 || x > 500 || y < -500 || y > 500 || z < -500 || z > 500 || speed >= 100) {
-        auto command = std::string("go ") + std::to_string(x) + std::to_string(x) + std::to_string(z) + std::to_string(speed);
-        return boolResult(udpClient->send(command.data()));
-    }
-    else {
-        throw std::invalid_argument("Invalid range for x,y,z and speed");
-    }
-    }*/
-    //return true;
-    if (((x >= -500) && (y >= -500) && (z >= -500) && (speed) > 10) || ((x <= -500) && (y <= -500) && (z <= -500) && (speed) < 100)) {
-        auto command=std::string("go ")+ std::to_string(x) + std::to_string(x)+ std::to_string(z)+ std::to_string(speed);
+    if (((x >= -500) && (y >= -500) && (z >= -500) && (speed) >= 10) && ((x <= 500) && (y <= 500) && (z <= 500) && (speed) <= 100)) {
+        auto command=std::string("go ")+ std::to_string(x) + std::string(" ") + std::to_string(y) + std::string(" ") + std::to_string(z) + std::string(" ") + std::to_string(speed);
         return boolResult(udpClient->send(command.data()));
     }else{
         throw std::invalid_argument("Invalid range for x,y,z and speed");

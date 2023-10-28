@@ -12,7 +12,7 @@ private:
     DECLARE_CLASS(HostFrame)
     wxPanel* pluginsPanel;
     wxBitmapButton* arrowButton(wxString pic, wxString toolTip, wxObjectEventFunction function = nullptr);
-    wxBitmapButton* emptyButton();
+    wxButton* toRelativePositionButton();
     void LoadPlugins();
     void OnButtonUpClick(wxCommandEvent& e);
     void OnButtonDownClick(wxCommandEvent& e);
@@ -22,6 +22,7 @@ private:
     void OnButtonTurnLeftClick(wxCommandEvent& e);
     void OnButtonForwardClick(wxCommandEvent& e);
     void OnButtonBackClick(wxCommandEvent& e);
+    void OnButtonToRelativePositionClick(wxCommandEvent& e);
 
     std::shared_ptr<ITelloControl> _telloControl;
 };

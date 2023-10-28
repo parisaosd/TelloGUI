@@ -137,7 +137,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\paris\source\repos\Tello\TelloGUI\Tello;C:\wxWidgets2\include;C:\wxWidgets2\include\msvc;C:\Users\paris\source\repos\Tello\TelloGUI\PlannedFlight;C:\wxWidgets2\lib\vc_x64_lib\mswu;C:\OpenCv\opencv\build\include;C:\Users\paris\source\repos\Tello\TelloGUI\PhotoVideo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -153,12 +153,14 @@
   <ItemGroup>
     <ClCompile Include="..\Test\tellocontrolmock.cpp" />
     <ClCompile Include="hostframe.cpp" />
+    <ClCompile Include="relativepositiondialog.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Test\tellocontrolmock.hpp" />
     <ClInclude Include="hostframe.h" />
     <ClInclude Include="iplugin.hpp" />
+    <ClInclude Include="relativepositiondialog.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="arrow-left.png" />

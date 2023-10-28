@@ -27,6 +27,9 @@
     <ClCompile Include="hostframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="relativepositiondialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Test\tellocontrolmock.hpp">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="hostframe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="relativepositiondialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

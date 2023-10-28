@@ -11,6 +11,7 @@
 #include <wx/file.h>
 #include "plannedflightplugin.h"
 #include "photovideoplugin.h"
+#include "relativepositiondialog.h"
 
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -66,10 +67,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     hboxToolbar->Add(connectionLabel);
     hboxToolbar->Add(connectionValue);
 
-    //wxGridSizer* gs = new wxGridSizer(3, 3, 0, 0);
-    wxGridSizer* gs = new wxGridSizer(3, 11, 0, 0);
-
-
+    wxGridSizer* gs = new wxGridSizer(5, 11, 0, 0);
 
     // row 1 
     gs->AddSpacer(SPACER_SIZE);
@@ -111,6 +109,21 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     gs->Add(arrowButton("arrow-down.png", "Move back", wxCommandEventHandler(HostFrame::OnButtonBackClick)));
     gs->AddSpacer(SPACER_SIZE);
 
+    //row 4
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+
+    //row 5
+    gs->Add(toRelativePositionButton());
 
     hboxMain->Add(gs);
     vbox->Add(hboxToolbar);
@@ -119,6 +132,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     vbox->Add(pluginsPanel);
 
     this->SetSizer(vbox);
+    this->SetMinSize(wxSize(400, 350));
 
     LoadPlugins();
 }
@@ -191,6 +205,12 @@ void HostFrame::OnButtonBackClick(wxCommandEvent& e)
     t.detach();
 }
 
+void HostFrame::OnButtonToRelativePositionClick(wxCommandEvent& e)
+{
+    wxFrame* dialog = new RelativePositionDialog(this, _telloControl);
+    dialog->Show(true);
+}
+
 wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip, wxObjectEventFunction function) {
     wxBitmap bitmap;
     bitmap.LoadFile(pic, wxBITMAP_TYPE_PNG);
@@ -205,6 +225,15 @@ wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip, wxObjectE
             function, NULL, this
         );
     }
+    return button;
+}
+
+wxButton* HostFrame::toRelativePositionButton() {
+    auto button = new wxButton(this, -1, "Move to relative position...");
+    button->Connect(wxID_ANY,
+        wxEVT_COMMAND_BUTTON_CLICKED,
+        wxCommandEventHandler(HostFrame::OnButtonToRelativePositionClick), NULL, this
+    );
     return button;
 }
 
