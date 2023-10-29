@@ -23,6 +23,9 @@ private:
     void OnButtonForwardClick(wxCommandEvent& e);
     void OnButtonBackClick(wxCommandEvent& e);
     void OnButtonToRelativePositionClick(wxCommandEvent& e);
+    void OnTimer(wxTimerEvent& e);
+    wxTimer m_timer;
+    wxStaticText* _batteryLabelValue;
 
     std::shared_ptr<ITelloControl> _telloControl;
 };

@@ -35,10 +35,6 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
     pluginsPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);  
 
-    int batteryLevel = 0;
-    if (_telloControl->isOnline()) {
-        batteryLevel = _telloControl->batteryLevel();
-    }
 
     wxBoxSizer* vbox = new wxBoxSizer(wxVERTICAL);
 
@@ -48,11 +44,17 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
 
     //Battery 
+    int batteryLevel = 0;
+    if (_telloControl->isOnline()) {
+        batteryLevel = _telloControl->batteryLevel();
+    }
     wxStaticText* batteryLabel = new wxStaticText(this, 0, " Battery Level: ");
-    wxStaticText* batteryLabelValue = new wxStaticText(this, 0, wxString::Format(wxT("%d"), batteryLevel));
+    _batteryLabelValue = new wxStaticText(this, 0, wxString::Format(wxT("%d"), batteryLevel));
+    m_timer.Bind(wxEVT_TIMER, &HostFrame::OnTimer, this);
+    m_timer.Start(10000);
 
     hboxToolbar->Add(batteryLabel);
-    hboxToolbar->Add(batteryLabelValue);
+    hboxToolbar->Add(_batteryLabelValue);
 
     // to create buttons in tool bar ?????????????????????????????????????????????? 
 
@@ -255,4 +257,12 @@ void HostFrame::LoadPlugins()
     pluginsPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOWTEXT));
     pluginsPanel->SetSizer(s);
     pluginsPanel->Layout();
+}
+
+void HostFrame::OnTimer(wxTimerEvent& e)
+{
+        if (_telloControl->isOnline()) {
+            int batteryLevel = _telloControl->batteryLevel();
+            _batteryLabelValue->SetLabelText(wxString::Format(wxT("%d"), batteryLevel));
+        }
 }
