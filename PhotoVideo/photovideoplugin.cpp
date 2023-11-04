@@ -20,10 +20,10 @@ wxWindow* PhotoVideoPlugin::GetGUI(wxWindow* parent)
 	wxWindow* dlg = new wxWindow(parent, wxID_ANY);
 
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
-	wxButton* bStream = new wxButton(dlg, wxID_ANY, _("Camera"));
-	wxButton* bScreenshot = new wxButton(dlg, wxID_ANY, _("Screenshot"));
-	wxButton* bStartVideoRecording = new wxButton(dlg, wxID_ANY, _("Start recording"));
-	wxButton* bStopVideoRecording = new wxButton(dlg, wxID_ANY, _("Stop video"));
+	wxButton* bStream = new wxButton(dlg, wxID_ANY, _("Camera on"));
+	wxButton* bScreenshot = new wxButton(dlg, wxID_ANY, _("Capture image"));
+	wxButton* bStartVideoRecording = new wxButton(dlg, wxID_ANY, _("Record video"));
+	wxButton* bStopVideoRecording = new wxButton(dlg, wxID_ANY, _("Camera off"));
 	//Use connect in this case as static event tables won't work
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
 	bStream->Connect(wxID_ANY,

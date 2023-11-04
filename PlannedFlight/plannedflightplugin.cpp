@@ -20,8 +20,8 @@ wxWindow* PlannedFlightPlugin::GetGUI(wxWindow* parent)
 	delete gui;
 	gui = new wxWindow(parent, wxID_ANY);
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
-	wxButton* buttonOpen = new wxButton(gui, wxID_ANY, _("Planned flight"));
-	wxButton* buttonStop = new wxButton(gui, wxID_ANY, _("Stop"));
+	wxButton* buttonOpen = new wxButton(gui, wxID_ANY, _("Upload flight plan"));
+	wxButton* buttonStop = new wxButton(gui, wxID_ANY, _("Stop flight plan"));
 	//Use connect in this case as static event tables won't work
 	//As Plugin is derived from wxEvtHandler you can catch events in this Plugin
 	buttonOpen->Connect(wxID_ANY,

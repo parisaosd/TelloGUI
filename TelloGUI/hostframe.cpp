@@ -133,7 +133,7 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
     vbox->Add(pluginsPanel);
 
     this->SetSizer(vbox);
-    this->SetMinSize(wxSize(400, 350));
+    this->SetMinSize(wxSize(450, 350));
 
     LoadPlugins();
 }
