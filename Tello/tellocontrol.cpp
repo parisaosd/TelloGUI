@@ -67,10 +67,8 @@ bool TelloControl::isStreamOn()
 //Where the value of -latestFrame is assigned ? 
 bool TelloControl::saveScreenshotJpeg(std::string filename)
 {
-    //!isStreamOn():If the streamOn is True that stream is not on, (Negation of the isStreamOn() value
-    //_videoCapture == nullptr : meaning that the video capture instance is not properly initialized
-    //!_videoCapture->isOpened():checks if the _videoCapture instance is not opened, indicating that it's not capturing any video stream.
-    if (!isStreamOn() || _videoCapture == nullptr || !_videoCapture->isOpened())
+    //!isStreamOn():If the streamOn is True that stream is not on, (Negation of the isStreamOn() value.
+    if (!isStreamOn())
     {
         return false;
     }
@@ -163,7 +161,7 @@ bool TelloControl::emergency()
 bool TelloControl::streamon()
 {
     bool result = boolResult(udpClient->send(_strdup("streamon")));
-    state->setStreamStatus(result);
+    state->setStreamStatus(true);
     return result;
 }
 
