@@ -158,14 +158,7 @@ void HostFrame::OnButtonDownClick(wxCommandEvent& e)
 {
     std::thread t([this]()
         {
-            if (_telloControl->isLanded())
-            {
-                _telloControl->land();
-            }
-            else
-            {
-                _telloControl->down(20);
-            }
+            _telloControl->down(20);
         });
     t.detach();
 }
