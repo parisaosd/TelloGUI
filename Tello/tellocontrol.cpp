@@ -135,15 +135,11 @@ bool TelloControl::takeoff()
 
 bool TelloControl::land()
 {
-    if (state->getLanded()== false){
-        bool land= boolResult(udpClient->send(_strdup("land")));
-        if (land){
-            state->setLanded(true);
-        }
-        return land;
-    }else{
-        return true;
+    bool land = boolResult(udpClient->send(_strdup("land")));
+    if (land) {
+        state->setLanded(true);
     }
+    return land;
 }
 
 bool TelloControl::streamoff()

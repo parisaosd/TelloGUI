@@ -125,6 +125,14 @@ HostFrame::HostFrame() : wxFrame(NULL, wxID_ANY, "Tello")
 
     //row 5
     gs->Add(toRelativePositionButton());
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->AddSpacer(SPACER_SIZE);
+    gs->Add(landButton());
 
     hboxMain->Add(gs);
     vbox->Add(hboxToolbar);
@@ -205,6 +213,12 @@ void HostFrame::OnButtonToRelativePositionClick(wxCommandEvent& e)
     dialog->Show(true);
 }
 
+void HostFrame::OnButtonLandClick(wxCommandEvent&)
+{
+    std::thread t([this]() { _telloControl->land(); });
+    t.detach();
+}
+
 wxBitmapButton* HostFrame::arrowButton(wxString pic, wxString toolTip, wxObjectEventFunction function) {
     wxBitmap bitmap;
     bitmap.LoadFile(pic, wxBITMAP_TYPE_PNG);
@@ -227,6 +241,15 @@ wxButton* HostFrame::toRelativePositionButton() {
     button->Connect(wxID_ANY,
         wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(HostFrame::OnButtonToRelativePositionClick), NULL, this
+    );
+    return button;
+}
+
+wxButton* HostFrame::landButton() {
+    auto button = new wxButton(this, -1, "Land", wxPoint(0, 0));
+    button->Connect(wxID_ANY,
+        wxEVT_COMMAND_BUTTON_CLICKED,
+        wxCommandEventHandler(HostFrame::OnButtonLandClick), NULL, this
     );
     return button;
 }
